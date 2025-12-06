@@ -28,19 +28,16 @@ class _ContactSectionState extends State<ContactSection> {
       final String email = _emailController.text.trim();
       final String message = _messageController.text.trim();
 
-      final Uri emailUri = Uri(
-        scheme: 'mailto',
-        path: 'aayush00768@gmail.com',
-        queryParameters: {
-          'subject': 'New message from $name (Portfolio)',
-          'body': '''
+      final String body = '''
 Name: $name
 Email: $email
 
 Message:
 $message
-''',
-        },
+''';
+
+      final Uri emailUri = Uri.parse(
+          "mailto:aayush00768@gmail.com?subject=${Uri.encodeComponent('New message from $name (Portfolio)')}&body=${Uri.encodeComponent(body)}"
       );
 
       try {
